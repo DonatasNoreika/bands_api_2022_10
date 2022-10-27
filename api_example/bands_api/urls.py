@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from .views import (BandListAPI,
                     BandDetailAPI,
-                    AlbumReviewListAPI)
+                    AlbumReviewListAPI,
+                    AlbumReviewDetailAPI)
 
 urlpatterns = [
     path('bands', BandListAPI.as_view()),
     path('bands/<int:pk>', BandDetailAPI.as_view()),
-    path('albumreviews', AlbumReviewListAPI.as_view())
+    path('albumreviews', AlbumReviewListAPI.as_view()),
+    path('albumreviews/<int:pk>', AlbumReviewDetailAPI.as_view()),
 ]
