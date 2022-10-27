@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import (BandListAPI,
-                    BandDetailAPI)
+                    BandDetailAPI,
+                    AlbumReviewListAPI)
 
 urlpatterns = [
     path('bands', BandListAPI.as_view()),
     path('bands/<int:pk>', BandDetailAPI.as_view()),
+    path('albumreviews', AlbumReviewListAPI.as_view())
 ]
