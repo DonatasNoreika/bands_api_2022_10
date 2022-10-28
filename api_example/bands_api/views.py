@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import (Band,
+                    Album,
                     AlbumReview)
 from .serializers import (BandSerializer,
-                        AlbumReviewSerializer)
+                          AlbumReviewSerializer,
+                          AlbumSerializer)
 from rest_framework.exceptions import ValidationError
 
 # Create your views here.
@@ -16,6 +18,18 @@ class BandListAPI(generics.ListCreateAPIView):
 class BandDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Band.objects.all()
     serializer_class = BandSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class AlbumListAPI(generics.ListCreateAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class AlbumDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 

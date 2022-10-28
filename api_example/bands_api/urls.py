@@ -18,11 +18,15 @@ from django.urls import path
 from .views import (BandListAPI,
                     BandDetailAPI,
                     AlbumReviewListAPI,
-                    AlbumReviewDetailAPI)
+                    AlbumReviewDetailAPI,
+                    AlbumListAPI,
+                    AlbumDetailAPI)
 
 urlpatterns = [
     path('bands', BandListAPI.as_view()),
     path('bands/<int:pk>', BandDetailAPI.as_view()),
     path('albumreviews', AlbumReviewListAPI.as_view()),
     path('albumreviews/<int:pk>', AlbumReviewDetailAPI.as_view()),
+    path('albums', AlbumListAPI.as_view()),
+    path('albums/<int:pk>', AlbumDetailAPI.as_view()),
 ]

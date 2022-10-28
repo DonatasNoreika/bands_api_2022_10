@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from .models import (Band,
-                     AlbumReview)
+                    Album,
+                    AlbumReview)
 
 class BandSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,3 +18,8 @@ class AlbumReviewSerializer(serializers.ModelSerializer):
         model = AlbumReview
         fields = ['id', 'user', 'user_id', 'album', 'content', 'score']
 
+
+class AlbumSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ['id', 'name', 'band']
