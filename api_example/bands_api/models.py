@@ -29,7 +29,7 @@ class Song(models.Model):
 
 class AlbumReview(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    album = models.ForeignKey(to="Album", on_delete=models.CASCADE)
+    album = models.ForeignKey(to="Album", on_delete=models.CASCADE, related_name='reviews')
     content = models.TextField(verbose_name="Content", max_length=3000, null=True, blank=True)
     score = models.IntegerField(verbose_name="Score")
 

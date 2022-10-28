@@ -29,6 +29,8 @@ class AlbumAlbumReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'user_id', 'album', 'content', 'score']
 
 class AlbumSerializer(serializers.ModelSerializer):
+    reviews = AlbumReviewSerializer(many=True)
+
     class Meta:
         model = Album
-        fields = ['id', 'name', 'band']
+        fields = ['id', 'name', 'band', 'reviews']
