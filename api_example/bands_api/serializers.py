@@ -9,10 +9,16 @@ class BandSerializer(serializers.ModelSerializer):
         model = Band
         fields = ['id', 'name']
 
+class MyAlbumSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ['id', 'name', 'band']
+
 
 class AlbumReviewSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     user_id = serializers.ReadOnlyField(source='user.id')
+    album = MyAlbumSerializer()
 
     class Meta:
         model = AlbumReview
