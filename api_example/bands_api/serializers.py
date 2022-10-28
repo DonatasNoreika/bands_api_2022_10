@@ -30,7 +30,11 @@ class AlbumAlbumReviewSerializer(serializers.ModelSerializer):
 
 class AlbumSerializer(serializers.ModelSerializer):
     reviews = AlbumReviewSerializer(many=True)
+    reviews_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Album
-        fields = ['id', 'name', 'band', 'reviews']
+        fields = ['id', 'name', 'band', 'reviews', 'reviews_count']
+
+    def get_reviews_count(self, obj):
+        return AlbumReview.objects.filter(album=obj).count()
