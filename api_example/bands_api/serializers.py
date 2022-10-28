@@ -19,6 +19,15 @@ class AlbumReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'user_id', 'album', 'content', 'score']
 
 
+class AlbumAlbumReviewSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+    user_id = serializers.ReadOnlyField(source='user.id')
+    album = serializers.ReadOnlyField(source='album.id')
+
+    class Meta:
+        model = AlbumReview
+        fields = ['id', 'user', 'user_id', 'album', 'content', 'score']
+
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album

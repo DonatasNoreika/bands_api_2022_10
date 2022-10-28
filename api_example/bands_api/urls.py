@@ -20,7 +20,8 @@ from .views import (BandListAPI,
                     AlbumReviewListAPI,
                     AlbumReviewDetailAPI,
                     AlbumListAPI,
-                    AlbumDetailAPI)
+                    AlbumDetailAPI,
+                    AlbumAlbumReviewListAPI)
 
 urlpatterns = [
     path('bands', BandListAPI.as_view()),
@@ -29,4 +30,5 @@ urlpatterns = [
     path('albumreviews/<int:pk>', AlbumReviewDetailAPI.as_view()),
     path('albums', AlbumListAPI.as_view()),
     path('albums/<int:pk>', AlbumDetailAPI.as_view()),
+    path('albums/<int:pk>/albumreviews', AlbumAlbumReviewListAPI.as_view()),
 ]

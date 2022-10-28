@@ -5,7 +5,8 @@ from .models import (Band,
                     AlbumReview)
 from .serializers import (BandSerializer,
                           AlbumReviewSerializer,
-                          AlbumSerializer)
+                          AlbumSerializer,
+                          AlbumAlbumReviewSerializer)
 from rest_framework.exceptions import ValidationError
 
 # Create your views here.
@@ -40,6 +41,20 @@ class AlbumReviewListAPI(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class AlbumAlbumReviewListAPI(generics.ListCreateAPIView):
+    # queryset = AlbumReview.objects.all()
+    serializer_class = AlbumAlbumReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        album = Album.objects.get(pk=self.kwargs['pk'])
+        return AlbumReview.objects.filter(album=album)
+
+    def perform_create(self, serializer):
+        album = Album.objects.get(pk=self.kwargs['pk'])
+        serializer.save(user=self.request.user, album=album)
 
 class AlbumReviewDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = AlbumReview.objects.all()
